@@ -9,7 +9,7 @@ fi
 ## Config
 SERVER="192.168.0.50"
 USER="flo"
-DESTFOLDER="3TB/Daten/Backup_YOGA"
+DESTFOLDER="/home/flo/3TB/Daten/Backup_YOGA"
 
 # Directories
 DIRECTORIES[0]="/home/flo/projects/"
@@ -42,7 +42,7 @@ elif [ $1 == "server" ] ; then
 	if [ $2 == "update" ] ; then
 		echo $SEP1
 		echo `$TS` "Check for Updates.."
-		find . -type f -iname "*$TEMPEXT" -print0 | while read -d $'\0' FILE ; do
+		find . -type f -name "*$TEMPEXT" -print0 | while read -d $'\0' FILE ; do
 			OLDFILE=${FILE:0:-7}
 			BASEFILE=${FILE:0:-28}
 			BASENAME=${BASEFILE##*/}
@@ -57,6 +57,13 @@ elif [ $1 == "server" ] ; then
 			fi
 		done
 		echo $SEP1
+	elif [ $2 == "clear" ] ; then
+		find -name "*.BAK.*"
+		echo "Clear Old Files? (y/n)"
+		read a
+		if [ $a == 'y' ] ; then
+			find -type f -name "*.BAK.*" -exec rm {} \;
+		fi
 	fi
 fi
 echo `$TS` "DONE!" "took" $(((`date +%s`-STOPWATCH)/60)) "min." $(((`date +%s`-STOPWATCH)%60)) "sec."

@@ -7,13 +7,16 @@ if [ $# -lt 1 ] || [ $# -gt 2 ] ; then
 fi
 
 ## Config
-SERVER="192.168.0.50"
-USER="flo"
+SERVER="zbox"
 DESTFOLDER="/home/flo/3TB/Daten/Backup_YOGA"
 
 # Directories
 DIRECTORIES[0]="/home/flo/projects/"
-
+DIRECTORIES[1]="/home/flo/bin/"
+DIRECTORIES[1]="/home/flo/hsr/"
+DIRECTORIES[1]="/home/flo/.ssh/"
+DIRECTORIES[1]="/home/flo/dev/"
+DIRECTORIES[1]="/opt/ide/"
 
 ## Const	
 TEMPEXT=".IAMOLD"
